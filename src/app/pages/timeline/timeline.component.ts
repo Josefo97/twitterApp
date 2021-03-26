@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit } from '@angular/core';
+import NgxTwitterTimelineData from '../../share/models/timeline-data.model';
+import NgxTwitterTimelineOptions from '../../share/models/timeline-options.model';
+import { element } from 'protractor';
 
 @Component({
   selector: 'app-timeline',
@@ -7,58 +10,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TimelineComponent implements OnInit {
 
-  constructor() { }
+  /*
+  Los datos obtenidos de la definición del objeto para el contenido que se mostrara en el widget
+  Puede ser una cadena de ID de widget para buscar en el la API timeline o un widget heredado
+  */
+  @Input() data: NgxTwitterTimelineData;
+
+  // Un hash de opciones adicionales para configurar el widget.
+  @Input() opts: NgxTwitterTimelineOptions;
+
+  defaultOpts: NgxTwitterTimelineOptions = {
+    tweetLimit: 5
+  }
+
+  defaulData: NgxTwitterTimelineData = {
+    sourceType: 'url',
+    url: 'https://twitter.com/John_Papa',
+    screenName: 'John_Papa'
+  }
+
+  constructor( private element: ElementRef ) { }
 
   ngOnInit(): void {
   }
 
-  NgxTwitterTimelineData: {
-    /**
-     * profile or URL
-     */
-    sourceType: 'https://twitter.com/John_Papa';
-    /**
-     * Valid Twitter username
-     */
-    screenName?: '@John_Papa';
-    /**
-     * Absolute URL of a Twitter profile, likes, list, or collection
-     */
-    url: 'https://twitter.com/John_Papa';
-  }
-
-  NgxTwitterTimelineOptions: {
-    /**
-     * Render a timeline statically, displaying only n number of Tweets.
-     * Range: 1-20
-     */
-    tweetLimit?: number;
-    /**
-     * Set a fixed height of the embedded widget
-     * Positive integer
-     */
-    height?: number;
-    /**
-     * Adjust the color of borders inside the widget.
-     * Hexadecimal color
-     */
-    borderColor?: string;
-    /**
-     * Sets the theme of the widget. Default = 'light'.
-     * 'light' or 'dark'
-     */
-    theme?: string;
-    /**
-     * Toggle the display of design elements in the widget. This parameter is a space-separated list of values
-     * Values: noheader, nofooter, noborders, transparent, noscrollbar
-     */
-    chrome?: string[];
-    /**
-     * Apply the specified aria-polite behavior to the rendered timeline.
-     * New Tweets may be added to the top of a timeline, affecting screen readers
-     * Values: polite, assertive, rude
-     */
-    ariaPolite?: string[];
-  }
-  
 }
