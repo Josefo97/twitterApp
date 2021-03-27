@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, Input, OnInit } from '@angular/core';
 import NgxTwitterTimelineData from '../../share/models/timeline-data.model';
 import NgxTwitterTimelineOptions from '../../share/models/timeline-options.model';
 import { TimelineService } from '../../services/timeline.service';
@@ -10,7 +10,24 @@ import { TimelineService } from '../../services/timeline.service';
 })
 export class TimelineComponent implements OnInit {
 
-  /*
+  contador = 5;
+  cantidadValores: number = 10;
+
+  // Escroll infinito
+  @HostListener('window:scroll', ['$event'])
+  onScroll() {
+    
+    const pos = ( document.documentElement.scrollTop || document.body.scrollTop ) + 800; // posicion de la ventana al hacer scroll
+    const max = ( document.documentElement.scrollHeight || document.documentElement.scrollHeight ); // posicion maxima de la ventana
+
+    if ( pos > max ) {
+      this.cantidadValores = this.contador+5;
+      console.log({ pos, max }, 'contador: ', this.cantidadValores);
+    }
+
+  }
+
+  /*        ESTOS INPUTS FUNCIONAN AL USAR LOS SERVICIOS
   Los datos obtenidos de la definición del objeto para el contenido que se mostrara en el widget
   Puede ser una cadena de ID de widget para buscar en el la API timeline o un widget heredado
   */
@@ -20,7 +37,7 @@ export class TimelineComponent implements OnInit {
   @Input() opts: NgxTwitterTimelineOptions;
 
   defaultOpts: NgxTwitterTimelineOptions = {
-    tweetLimit: 2
+    tweetLimit: this.cantidadValores
   }
 
   defaultData: NgxTwitterTimelineData = {
@@ -32,12 +49,16 @@ export class TimelineComponent implements OnInit {
   constructor( private element: ElementRef,
                private twitterService: TimelineService ) {
                 // this.loadTwitterWidget();
+                console.log(this.contador);
                }
 
   ngOnInit(): void {
   }
 
   ngOnChanges(): void {
+
+
+
     if (this.data && this.data.sourceType) {
       switch (this.data.sourceType) {
         case 'url':
