@@ -10,9 +10,8 @@ export class FechasService {
   calcularDiferencia( tipo: String, fechaInicio?: Date, fechaFinal?: Date ) {
 
     let resultado: number;
-    let tipoInvalido = 'Selecciona una unidad de medida';
 
-    switch ( tipo == 'dias' || tipo == 'meses' || tipo == 'anios' || tipo == 'horas' || tipo == 'minutos' || tipo == '' ) {
+    switch ( tipo == 'dias' || tipo == 'meses' || tipo == 'anios' || tipo == 'horas' || tipo == 'minutos' ) {
       case tipo == 'dias':
         let diferenciaMilisegundos =  fechaFinal.getTime() - fechaInicio.getTime();
         let diasMilisegundos = 86400000;
@@ -46,30 +45,90 @@ export class FechasService {
         resultado = diferenciaMinutos / minutosMilisegundos;
 
         return resultado;
-      case tipo == '':
-        return tipoInvalido;
       default:
-        return tipoInvalido;
+        return 0;
     }
     
   }
 
-  //TODO modificacion para el calculo de horas
-  diferenciaHoras(horaInicio: Date, horaFinal: Date) {
-    let diferenciaMilisegundos = horaFinal.getHours() - horaInicio.getHours();
-    let horasMilisegundos = 3600000;
-    
-    let diferenciaHoras = diferenciaMilisegundos / horasMilisegundos
-    return diferenciaHoras;
-  }
-  
-  //TODO modificacion para el calculo de min
-  diferenciaMinutos(minInicio: Date, minFinal: Date) {
-    let diferenciaMilisegundos = minFinal.getTime() - minInicio.getTime();
-    let minutosMilisegundos = 60000;
+  tipoOperacion( tipo: String, fecha: Date, cantidad: number, operacion: boolean ) {
 
-    let diferenciaMinutos = diferenciaMilisegundos / minutosMilisegundos
-    return diferenciaMinutos;
+    let resultado: number;
+
+    switch ( tipo == 'dias' || tipo == 'meses' || tipo == 'anios' || tipo == 'horas' || tipo == 'minutos' ) {
+      case tipo == 'dias':
+        let diaObtenido = fecha.getTime();
+        let diasMilisegundos = 86400000;
+
+        let dias = cantidad * diasMilisegundos;
+        
+        if ( operacion ) {
+          resultado = diaObtenido + dias;
+        } else {
+          resultado = diaObtenido - dias;
+        }
+
+        return resultado;
+        
+      case tipo == 'meses':
+        let mesObtenido = fecha.getTime();
+        let mesesMilisegundos = 2629750000;
+
+        let meses = cantidad * mesesMilisegundos;
+
+        if ( operacion ) {
+          resultado = mesObtenido + meses;
+        } else {
+          resultado = mesObtenido - meses;
+        }
+
+        return resultado;
+
+      case tipo == 'anios':
+        let anioObtenido = fecha.getTime();
+        let aniosMilisegundos = 31557600000;
+
+        let anios = cantidad * aniosMilisegundos;
+
+        if ( operacion ) {
+          resultado = anioObtenido + anios;
+        } else {
+          resultado = anioObtenido - anios;
+        }
+
+        return resultado;
+
+      case tipo == 'horas':
+        let horasObtenidas = fecha.getTime();
+        let horasMilisegundos = 3600000;
+
+        let horas = cantidad * horasMilisegundos;
+
+        if ( operacion ) {
+          resultado = horasObtenidas + horas;
+        } else {
+          resultado = horasObtenidas - horas;
+        }
+
+        return resultado;
+
+      case tipo == 'minutos':
+        let minutosObtenidos = fecha.getTime();
+        let minutosMilisegundos = 60000
+
+        let minutos = cantidad * minutosMilisegundos;
+
+        if ( operacion ) {
+          resultado = minutosObtenidos + minutos;
+        } else {
+          resultado = minutosObtenidos - minutos;
+        }
+
+        return resultado;
+
+      default:
+        break;
+    }
   }
 
   compararFechas(fecha_1: Date, fecha_2: Date){

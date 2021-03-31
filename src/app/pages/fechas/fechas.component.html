@@ -3,25 +3,21 @@
         <mat-card-header>Diferencia de fechas</mat-card-header>
         <form [formGroup]="formFechas">
             <mat-card-content>
-                <mat-form-field class="col-md-6">
+                <mat-form-field appearance="fill" class="col-md-6">
                     <mat-label>Fecha de inicio</mat-label>
-                    <input matInput
-                          [matDatepicker]="datePickerInicio"
-                          formControlName="fechaInicio">
+                    <input matInput [matDatepicker]="datePickerInicio" formControlName="fechaInicio">
                     <mat-datepicker-toggle matSuffix [for]="datePickerInicio"></mat-datepicker-toggle>
                     <mat-datepicker #datePickerInicio></mat-datepicker>
                 </mat-form-field>
-                
-                <mat-form-field class="col-md-6">
+
+                <mat-form-field appearance="fill" class="col-md-6">
                     <mat-label>Fecha final</mat-label>
-                    <input matInput
-                          [matDatepicker]="datePickerFin"
-                          formControlName="fechaFinal">
+                    <input matInput [matDatepicker]="datePickerFin" formControlName="fechaFinal">
                     <mat-datepicker-toggle matSuffix [for]="datePickerFin"></mat-datepicker-toggle>
                     <mat-datepicker #datePickerFin></mat-datepicker>
                 </mat-form-field>
 
-                <mat-form-field class="col-md-6">
+                <mat-form-field appearance="fill" class="col-md-6">
                     <mat-label>Select an option</mat-label>
                     <mat-select formControlName="tipo">
                         <mat-option>None</mat-option>
@@ -30,18 +26,91 @@
                         <mat-option value="anios">Años</mat-option>
                         <mat-option value="horas">Horas</mat-option>
                         <mat-option value="minutos">Minutos</mat-option>
-                    </mat-select>                    
+                    </mat-select>
                 </mat-form-field>
-                
-                <mat-form-field class="col-md-6">
+
+                <mat-form-field appearance="fill" class="col-md-6">
                     <mat-label>La diferencia es de:</mat-label>
-                    <input matInput type="text" name="diferencia">
+                    <input matInput type="text" name="diferencia" value="{{ difereciaDias }} {{ tipo }}"
+                        formControlName="diferencia">
                 </mat-form-field>
-                
+
+                <mat-form-field appearance="fill" class="col-md-6">
+                    <mat-label>La primer fecha es menor</mat-label>
+                    <input matInput type="text" name="menor" value="{{ diferenciaFechasMenor }}"
+                        formControlName="esMenor">
+                </mat-form-field>
+
+                <mat-form-field appearance="fill" class="col-md-6">
+                    <mat-label>La primer fecha es mayor</mat-label>
+                    <input matInput type="text" name="menor" value="{{ diferenciaFechasMayor }}"
+                        formControlName="esMayor">
+                </mat-form-field>
+
             </mat-card-content>
         </form>
-        <mat-card-actions>
-            <button mat-raised-button type="button" color="primary" (click)="calcularDiferencia()">Calcular</button>
+        <mat-card-actions class="text-center">
+            <button mat-raised-button type="button" color="primary" [disabled]="formFechas.invalid"
+                (click)="calcularDiferencia()">Calcular Diferencia</button>
+            <button mat-raised-button type="button" color="primary" (click)="compararFechas()">Comparar Fechas</button>
+            <button mat-raised-button type="button" color="warn" (click)="formFechas.reset()">Cancelar</button>
         </mat-card-actions>
+
+    </mat-card>
+</div>
+
+<!-- formato de fechas, sumas y restas -->
+<div class="row mt-5">
+    <mat-card>
+        <mat-card-header> Formato de fechas, sumas y restas </mat-card-header>
+        <form [formGroup]="formSumaResta">
+            <mat-card-content>
+
+                <mat-form-field appearance="fill" class="col-md-6">
+                    <mat-label>Fecha</mat-label>
+                    <input matInput [matDatepicker]="datePickerFecha" formControlName="fecha">
+                    <mat-datepicker-toggle matSuffix [for]="datePickerFecha"></mat-datepicker-toggle>
+                    <mat-datepicker #datePickerFecha></mat-datepicker>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill" class="col-md-6">
+                    <mat-label>Select an option</mat-label>
+                    <mat-select formControlName="tipoSumaFormato">
+                        <mat-option>None</mat-option>
+                        <mat-option value="dias">Días</mat-option>
+                        <mat-option value="meses">Meses</mat-option>
+                        <mat-option value="anios">Años</mat-option>
+                        <mat-option value="horas">Horas</mat-option>
+                        <mat-option value="minutos">Minutos</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill" class="col-md-6">
+                    <mat-label>Cantidad a sumar o restar</mat-label>
+                    <input matInput type="number" name="cantidadASumar" formControlName="cantidadASumar">
+                </mat-form-field>
+
+                <mat-radio-group aria-label="Select an option" formControlName="operacion">
+                    <mat-radio-button value="suma" class="mr-2">Sumar</mat-radio-button>
+                    <mat-radio-button value="resta">Restar</mat-radio-button>
+                </mat-radio-group>
+
+
+                <mat-form-field appearance="fill" class="col-md-6">
+                    <mat-label>La fecha es: </mat-label>
+                    <div *ngFor="let format of formatsDate">
+                        <input matInput name="fechaSumada" formControlName="resultadoFecha"
+                            value="{{ resultadoSuma | date: format }}">
+                    </div>
+                </mat-form-field>
+            </mat-card-content>
+        </form>
+
+        <mat-card-actions class="text-center">
+            <button mat-raised-button type="button" color="primary" (click)="sumar()"
+                [disabled]="formSumaResta.invalid">Calcular</button>
+            <button mat-raised-button type="button" color="warn" (click)="formSumaResta.reset()">Cancelar</button>
+        </mat-card-actions>
+
     </mat-card>
 </div>
