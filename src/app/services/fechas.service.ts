@@ -8,7 +8,6 @@ export class FechasService {
   constructor() { }
 
   calcularDiferencia( tipo: String, fechaInicio?: Date, fechaFinal?: Date ) {
-    /*
 
     let resultado: number;
     let tipoInvalido = 'Selecciona una unidad de medida';
@@ -52,40 +51,19 @@ export class FechasService {
       default:
         return tipoInvalido;
     }
-    */
-  }
-  diferenciaDias(fechaInicio: Date, fechaFinal: Date) {
-    let diferenciaMilisegundos =  fechaFinal.getTime() - fechaInicio.getTime();
-    let diasMilisegundos = 86400000;
-
-    let diferenciaDias = diferenciaMilisegundos / diasMilisegundos
-    return diferenciaDias;
+    
   }
 
-  diferenciaMeses(fechaInicio: Date, fechaFinal: Date) {
-    let diferenciaMilisegundos = fechaFinal.getTime() - fechaInicio.getTime();
-    let diasMilisegundos = 2592000000;
-
-    let diferenciaMeses = diferenciaMilisegundos / diasMilisegundos
-    return diferenciaMeses;
-  }
-  
-  diferenciaAnios(fechaInicio: Date, fechaFinal: Date) {
-    let diferenciaMilisegundos = fechaFinal.getTime() - fechaInicio.getTime();
-    let diasMilisegundos = 31536000000;
-
-    let diferenciaAnios = diferenciaMilisegundos / diasMilisegundos
-    return diferenciaAnios.valueOf();
-  }
-  
+  //TODO modificacion para el calculo de horas
   diferenciaHoras(horaInicio: Date, horaFinal: Date) {
     let diferenciaMilisegundos = horaFinal.getHours() - horaInicio.getHours();
     let horasMilisegundos = 3600000;
-
+    
     let diferenciaHoras = diferenciaMilisegundos / horasMilisegundos
     return diferenciaHoras;
   }
-
+  
+  //TODO modificacion para el calculo de min
   diferenciaMinutos(minInicio: Date, minFinal: Date) {
     let diferenciaMilisegundos = minFinal.getTime() - minInicio.getTime();
     let minutosMilisegundos = 60000;
