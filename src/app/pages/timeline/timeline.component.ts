@@ -22,9 +22,17 @@ export class TimelineComponent implements OnInit {
 
     if ( pos > max ) {
       this.cantidadValores = this.contador+5;
-      console.log({ pos, max }, 'contador: ', this.cantidadValores);
+      // console.log({ pos, max }, 'contador: ', this.cantidadValores);
     }
 
+  }
+
+  @HostListener('mat-card', ['$event'])
+  scroll() {
+    const pos = ( document.documentElement.scrollTop || document.body.scrollTop ) + 800; // posicion de la ventana al hacer scroll
+    const max = ( document.documentElement.scrollHeight || document.documentElement.scrollHeight ); // posicion maxima de la ventana
+    console.log({pos, max});
+    
   }
 
   /*        ESTOS INPUTS FUNCIONAN AL USAR LOS SERVICIOS
@@ -47,7 +55,8 @@ export class TimelineComponent implements OnInit {
   }
 
   constructor( private element: ElementRef,
-               private twitterService: TimelineService ) {
+               private twitterService: TimelineService
+              ) {
                 // this.loadTwitterWidget();
                 console.log(this.contador);
                }
@@ -56,8 +65,6 @@ export class TimelineComponent implements OnInit {
   }
 
   ngOnChanges(): void {
-
-
 
     if (this.data && this.data.sourceType) {
       switch (this.data.sourceType) {

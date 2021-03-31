@@ -1,0 +1,47 @@
+<div class="row">
+    <mat-card>
+        <mat-card-header>Diferencia de fechas</mat-card-header>
+        <form [formGroup]="formFechas">
+            <mat-card-content>
+                <mat-form-field class="col-md-6">
+                    <mat-label>Fecha de inicio</mat-label>
+                    <input matInput
+                          [matDatepicker]="datePickerInicio"
+                          formControlName="fechaInicio">
+                    <mat-datepicker-toggle matSuffix [for]="datePickerInicio"></mat-datepicker-toggle>
+                    <mat-datepicker #datePickerInicio></mat-datepicker>
+                </mat-form-field>
+                
+                <mat-form-field class="col-md-6">
+                    <mat-label>Fecha final</mat-label>
+                    <input matInput
+                          [matDatepicker]="datePickerFin"
+                          formControlName="fechaFinal">
+                    <mat-datepicker-toggle matSuffix [for]="datePickerFin"></mat-datepicker-toggle>
+                    <mat-datepicker #datePickerFin></mat-datepicker>
+                </mat-form-field>
+
+                <mat-form-field class="col-md-6">
+                    <mat-label>Select an option</mat-label>
+                    <mat-select formControlName="tipo">
+                        <mat-option>None</mat-option>
+                        <mat-option value="dias">Días</mat-option>
+                        <mat-option value="meses">Meses</mat-option>
+                        <mat-option value="anios">Años</mat-option>
+                        <mat-option value="horas">Horas</mat-option>
+                        <mat-option value="minutos">Minutos</mat-option>
+                    </mat-select>                    
+                </mat-form-field>
+                
+                <mat-form-field class="col-md-6">
+                    <mat-label>La diferencia es de:</mat-label>
+                    <input matInput type="text" name="diferencia">
+                </mat-form-field>
+                
+            </mat-card-content>
+        </form>
+        <mat-card-actions>
+            <button mat-raised-button type="button" color="primary" (click)="calcularDiferencia()">Calcular</button>
+        </mat-card-actions>
+    </mat-card>
+</div>
