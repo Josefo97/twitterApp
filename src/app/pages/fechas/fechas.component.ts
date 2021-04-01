@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { DatePipe } from '@angular/common';
 import { FechasService } from '../../services/fechas.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -36,12 +35,7 @@ export class FechasComponent implements OnInit {
 
   constructor(
     private fechasService: FechasService,
-    //  private dataPipe: DatePipe,
     private formBuilder: FormBuilder) {
-
-    let fecha = Date.now();
-    let hoy = new Date(fecha).toUTCString();
-    // console.log('hoy es: ' ,hoy);
 
   }
 

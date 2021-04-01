@@ -13,7 +13,7 @@ export class TimelineComponent implements OnInit {
   contador = 5;
   cantidadValores: number = 10;
 
-  // Escroll infinito
+  // Inicio para la creacion del escroll infinito
   @HostListener('window:scroll', ['$event'])
   onScroll() {
     
@@ -44,6 +44,7 @@ export class TimelineComponent implements OnInit {
   // Un hash de opciones adicionales para configurar el widget.
   @Input() opts: NgxTwitterTimelineOptions;
 
+  // Datos para usarlos en el template
   defaultOpts: NgxTwitterTimelineOptions = {
     tweetLimit: this.cantidadValores
   }
@@ -57,6 +58,7 @@ export class TimelineComponent implements OnInit {
   constructor( private element: ElementRef,
                private twitterService: TimelineService
               ) {
+                // TODO metodo que muestra el timeline abacarcando toda la pantalla, se recomienda comentar todo el codigo del template
                 // this.loadTwitterWidget();
                 console.log(this.contador);
                }
