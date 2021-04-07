@@ -16,13 +16,15 @@ import { TemaModule } from './@tema/Tema.module';
 import { TimelineComponent } from './pages/timeline/timeline.component';
 import { FechasComponent } from './pages/fechas/fechas.component';
 import { NavbarComponent } from './pages/navbar/navbar.component';
+import { ConvertidorComponent } from './pages/convertidor/convertidor.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TimelineComponent,
     FechasComponent,
-    NavbarComponent
+    NavbarComponent,
+    ConvertidorComponent
   ],
   imports: [
     BrowserModule,
