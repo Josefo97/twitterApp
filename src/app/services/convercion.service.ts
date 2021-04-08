@@ -18,9 +18,10 @@ export class ConvercionService {
         const html: string | ArrayBuffer = reader.result;
         const docxToHMTL =  convertToHtml({ arrayBuffer: html }).then( ( resultObject ) => {
           ResHTML = resultObject.value;
-          console.log( 'resultado: ', ResHTML );
+          console.log( 'resultadoService: ', ResHTML );
         });
-        const upload = { nombre: file.name, file: docxToHMTL, size: file.size, type: file.type }
+        // const upload = { nombre: file.name, file: docxToHMTL, size: file.size, type: file.type }
+        const upload = { nombre: file.name, file: ResHTML, size: file.size, type: file.type }
         resolve(upload);
       };
       reader.readAsArrayBuffer(file);

@@ -17,6 +17,7 @@ import { TimelineComponent } from './pages/timeline/timeline.component';
 import { FechasComponent } from './pages/fechas/fechas.component';
 import { NavbarComponent } from './pages/navbar/navbar.component';
 import { ConvertidorComponent } from './pages/convertidor/convertidor.component';
+import { EditorComponent } from './pages/editor/editor.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ConvertidorComponent } from './pages/convertidor/convertidor.component'
     TimelineComponent,
     FechasComponent,
     NavbarComponent,
-    ConvertidorComponent
+    ConvertidorComponent,
+    EditorComponent
   ],
   imports: [
     BrowserModule,
