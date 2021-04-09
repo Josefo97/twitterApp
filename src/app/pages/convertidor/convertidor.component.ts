@@ -38,6 +38,7 @@ export class ConvertidorComponent implements OnInit {
         let arrayBuffer = reader.result;
         // debugger
   
+        // TODO error mammoth
         // mammoth.convertToHtml({arrayBuffer: arrayBuffer}).then((resultObject) => {
         //   console.log(resultObject.value)
         //   this.ResHTML = resultObject.value;
