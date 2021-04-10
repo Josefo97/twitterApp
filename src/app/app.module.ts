@@ -1,8 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { NoopAnimationsModule, BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxTwitterTimelineModule } from 'ngx-twitter-timeline';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { EditorModule } from '@progress/kendo-angular-editor';
+import { TemaModule } from './@tema/Tema.module';
 
 //Rutas
 import { APP_ROUTING } from './app.routes';
@@ -12,12 +14,12 @@ import { APP_ROUTING } from './app.routes';
 // Componentes
 import { AppComponent } from './app.component';
 
-import { TemaModule } from './@tema/Tema.module';
 import { TimelineComponent } from './pages/timeline/timeline.component';
 import { FechasComponent } from './pages/fechas/fechas.component';
 import { NavbarComponent } from './pages/navbar/navbar.component';
 import { ConvertidorComponent } from './pages/convertidor/convertidor.component';
 import { EditorComponent } from './pages/editor/editor.component';
+
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { EditorComponent } from './pages/editor/editor.component';
     NgxTwitterTimelineModule,
     APP_ROUTING,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    EditorModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

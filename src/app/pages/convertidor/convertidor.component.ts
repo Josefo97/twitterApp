@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { convertToHtml, extractRawText, convertToMarkdown } from "mammoth/mammoth.browser";
+// import { convertToHtml, extractRawText, convertToMarkdown } from "mammoth/mammoth.browser";
 import { ConvercionService } from '../../services/convercion.service';
-// import * as mammoth from 'mammoth';
+import * as mammoth from 'mammoth';
 
 @Component({
   selector: 'app-convertidor',
@@ -39,10 +39,10 @@ export class ConvertidorComponent implements OnInit {
         // debugger
   
         // TODO error mammoth
-        // mammoth.convertToHtml({arrayBuffer: arrayBuffer}).then((resultObject) => {
-        //   console.log(resultObject.value)
-        //   this.ResHTML = resultObject.value;
-        // })
+        mammoth.convertToHtml({arrayBuffer: arrayBuffer}).then((resultObject) => {
+          console.log(resultObject.value)
+          this.ResHTML = resultObject.value;
+        })
   
       };
       reader.readAsArrayBuffer(file);
